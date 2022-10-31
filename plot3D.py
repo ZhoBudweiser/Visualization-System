@@ -1,13 +1,14 @@
 from tvtk.api import tvtk
 from tvtkfunc import ivtk_scene, event_loop
 
+# Plot3D 数据的读取
 plot3d = tvtk.MultiBlockPLOT3DReader(
         xyz_file_name="./data/combxyz.bin",
         q_file_name="./data/combq.bin",
         scalar_function_number=100, vector_function_number=200
-    )#读入Plot3D数据
-plot3d.update()#让plot3D计算其输出数据
-grid = plot3d.output.get_block(0)#获取读入的数据集对象
+    )                                               # 读入Plot3D数据
+plot3d.update()                                     # 让plot3D计算其输出数据
+grid = plot3d.output.get_block(0)                   # 获取读入的数据集对象
 
 con = tvtk.ContourFilter()#创建等值面对象
 con.set_input_data(grid)
