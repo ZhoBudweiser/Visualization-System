@@ -66,3 +66,11 @@ UnstructuredGrid： 任意分布的点以及它们的区域面积
 Mayavi的mlab模块有6类函数：绘图函数、图形控制函数、图形修饰函数、相机控制函数、其他函数、Mlab管线控制。
 
 快速绘图实例中对数据进行三维可视化的调用方法是mlab.mesh()
+
+### 7.Mayavi
+
+Mayavi管线的层级：最高层级为Engine：用于建立和销毁Scenes(场景)；第二层级为Scenes：每个场景下有多个数据集合Sources，为Mayavi可视化提供了数据；第三层级为Filters：应用于Scenes上对数据进行变换；第四层级为Module Manager：控制颜色表示标量或矢量数据，在pipline视图中表现为Colors and Legends；第五层级为Modules：最终数据的表示，如线条、平面等。
+
+Mayavi.mlab中获取当前场景的方法是 mlab.gcf()；GridSource：网格对象的数据源，其界面中会显示每一项所对应的标量数据名称。它是是Scene 1的第一个子节点。；Surface：是Colors and legends的子节点，可设置一些显示对象的属性。
+
+Point3d（）基于Numpy数组x、y、z提供的三维点坐标，绘制点图形，Plot3d（）基于1维Numpy数组x、y、z提供的三维坐标数据，绘制线图形。imshow(s, …)，s是一个二维数组,s的值使用colormap被映射为颜色。Surf()方法实例中是通过什么高程矩阵的方法获取x,y二维数组的。mlab中可以进行矢量数据可视化的方法有mlba.figure、mlab.surf等
