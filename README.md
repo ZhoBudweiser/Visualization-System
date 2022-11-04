@@ -27,7 +27,7 @@ VTK，全称为Visualization Toolkit，也就是可视化工具包。是一个�
 
 Python作为一种动态编程语言，它的变量没有类型，traits 库可以为python添加类型定义，可以认为traits是tvtk对象的属性。颜色属性虽然可以接受多样的值，却不是能接受所有的值，比如"abc"、0.5等等就不能很好地表示颜色。而且虽然为了方便用户使用，对外的接口可以接受各种各样形式的值，但是在内部必须有一个统一的表达方式来简化程序的实现。用Trait属性可以很好地解决这样的问题：它可以接受能表示颜色的各种类型的值；当给它赋值为不能表达颜色的值时，它能够立即捕捉到错误，并且提供一个有用的错误报告，告诉用户它能够接受什么样的值；它提供一个内部的标准的颜色表达方式
 
-### 3.绘制技术
+### 3. 绘制技术
 
 将长方体数据转化为三维图像，需要运用tvtk库的各种对象协调完成（管线）。具体包括：创建长方体对象tvtk.CubeSource；使用PloyDataMapper映射器，将数据转换为图形数据；创建一个Actor渲染器，将前者处理；创建一个Renderer，将Actor添加进去；创建一个RenderWindow(窗口)，将Renderer 添加进去；创建一个RenderWindowInteractor(窗口的交互工具)
 
@@ -37,11 +37,11 @@ TVTK库可读取的外部文件类型：.obj、.stl、.ply等。
 
 读取MutiBlock数据的方法是：tvtk.MultiBlockPLOT3DReader(fname1,fname2,m,n)，fname1:Plot 3D 网格（XYZ文件），fname2:气动力学结果(Q文件)，m:标量数据数，n:矢量数据数
 
-### 4.管线技术
+### 4. 管线技术
 
 TVTK的管线包括两部分：可视化管线(Visualization Pipeline)：将原始数据加工成图形数据的过程。包括数据、数据预处理、数据映射。图形管线(Graphics Pipeline)：图形数据加工为我们所看到的图像的过程。包括数据映射、绘制、显示。
 
-### 5.数据集
+### 5. 数据集
 
 ImageData： 正交等距网格 表示二维或三维图像的数据结构；在数组中存放数据，点位于正交且等距的网格上，我们不需要给出坐标，点之间的连接是隐性的；
 
@@ -53,7 +53,7 @@ PolyData：点，点之间的联系和点构成的多边形 即前述创建三�
 
 UnstructuredGrid： 任意分布的点以及它们的区域面积
 
-### 6.可视化方法
+### 6. 可视化方法
 
 在标量数据可视化实例中，创建等值面对象的方法是generate_values()和set_value()。generate_values()方法中的两个参数的意义为指定轮廓数和数据范围。set_value()的参数值会产生指定等值面和对应的等值面的值。
 
@@ -67,10 +67,16 @@ Mayavi的mlab模块有6类函数：绘图函数、图形控制函数、图形修
 
 快速绘图实例中对数据进行三维可视化的调用方法是mlab.mesh()
 
-### 7.Mayavi
+### 7. Mayavi
 
 Mayavi管线的层级：最高层级为Engine：用于建立和销毁Scenes(场景)；第二层级为Scenes：每个场景下有多个数据集合Sources，为Mayavi可视化提供了数据；第三层级为Filters：应用于Scenes上对数据进行变换；第四层级为Module Manager：控制颜色表示标量或矢量数据，在pipline视图中表现为Colors and Legends；第五层级为Modules：最终数据的表示，如线条、平面等。
 
 Mayavi.mlab中获取当前场景的方法是 mlab.gcf()；GridSource：网格对象的数据源，其界面中会显示每一项所对应的标量数据名称。它是是Scene 1的第一个子节点。；Surface：是Colors and legends的子节点，可设置一些显示对象的属性。
 
 Point3d（）基于Numpy数组x、y、z提供的三维点坐标，绘制点图形，Plot3d（）基于1维Numpy数组x、y、z提供的三维坐标数据，绘制线图形。imshow(s, …)，s是一个二维数组,s的值使用colormap被映射为颜色。Surf()方法实例中是通过什么高程矩阵的方法获取x,y二维数组的。mlab中可以进行矢量数据可视化的方法有mlba.figure、mlab.surf等
+
+选取红色小球实例的基本框架是：建立 一个 figure；随机生成红、白小球；初始化红色小球选取外框；鼠标选取任意红色小球，外框移动到该小球上（callback）；建立on_ mouse_pick()响应机制；1, 因为绘制选取框放在第一个小球上，而数组索引从0开始，所以下标为[0]。2，通过 if picker.actor in red_glyphs.actor.actors：语句，判断哪个小球被选取。再通过被选取的顶点ID除以单个小球顶点数目，计算小球的ID，从而获得小球坐标。3，所有对象都定义好了再进行绘制，从而解决初始化慢的问题
+
+### 8. TraitsUI
+
+Configure_traits调用了主界面窗口或模态对话框,界面显示后，进入消息循环；Edit_traits调用了无模态窗口或对话框（不是对画框）,界面显示后，不进入消息循环。
