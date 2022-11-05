@@ -1,0 +1,11 @@
+apptools==4.4.0
+configobj==5.0.6
+mayavi==4.5.0+vtk71
+numpy==1.13.3+mkl
+pyface==5.1.0
+pygments==2.13.0
+PyQt4==4.11.4
+six==1.16.0
+traits==4.6.0
+traitsui==5.1.0
+VTK==7.1.1
