@@ -9,3 +9,5 @@ six==1.16.0
 traits==4.6.0
 traitsui==5.1.0
 VTK==7.1.1
+
+richdem~=0.3.4
