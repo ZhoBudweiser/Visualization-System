@@ -76,7 +76,7 @@ Mayavi管线的层级：最高层级为Engine：用于建立和销毁Scenes(场�
 
 Mayavi.mlab中获取当前场景的方法是 mlab.gcf()；GridSource：网格对象的数据源，其界面中会显示每一项所对应的标量数据名称。它是是Scene 1的第一个子节点。；Surface：是Colors and legends的子节点，可设置一些显示对象的属性。
 
-Point3d（）基于Numpy数组x、y、z提供的三维点坐标，绘制点图形，Plot3d（）基于1维Numpy数组x、y、z提供的三维坐标数据，绘制线图形。imshow(s, …)，s是一个二维数组,s的值使用colormap被映射为颜色。Surf()方法实例中是通过什么高程矩阵的方法获取x,y二维数组的。mlab中可以进行矢量数据可视化的方法有mlba.figure、mlab.surf等
+Point3d基于Numpy数组x、y、z提供的三维点坐标，绘制点图形，Plot3d（）基于1维Numpy数组x、y、z提供的三维坐标数据，绘制线图形。imshow(s, …)，s是一个二维数组,s的值使用colormap被映射为颜色。Surf()方法实例中是通过什么高程矩阵的方法获取x,y二维数组的。mlab中可以进行矢量数据可视化的方法有mlba.figure、mlab.surf等
 
 选取红色小球实例的基本框架是：建立 一个 figure；随机生成红、白小球；初始化红色小球选取外框；鼠标选取任意红色小球，外框移动到该小球上（callback）；建立on_ mouse_pick()响应机制；1, 因为绘制选取框放在第一个小球上，而数组索引从0开始，所以下标为[0]。2，通过 if picker.actor in red_glyphs.actor.actors：语句，判断哪个小球被选取。再通过被选取的顶点ID除以单个小球顶点数目，计算小球的ID，从而获得小球坐标。3，所有对象都定义好了再进行绘制，从而解决初始化慢的问题
 
@@ -339,7 +339,7 @@ $$
 
 ### 4. 系统设计
 
-支持的功能：DEM数据的读入与保存，流域分割算法实现分割，获取分割块之间的拓扑关系并展示相关信息
+支持的功能：DEM数据的读入与保存，流域分割算法实现分割，获取分割块之间的拓扑关系并展示相关信息。
 
 - 数据读取模块
   - 文件读取
@@ -367,3 +367,5 @@ $$
 Priority-Flood: An Optimal Depression-Filling and Watershed-Labeling Algorithm for Digital Elevation Models https://github.com/r-barnes/Barnes2013-Depressions
 
 RichDEM https://github.com/r-barnes/richdem https://richdem.com/
+
+TraitsUI https://docs.enthought.com/traitsui/
