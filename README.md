@@ -369,3 +369,5 @@ Priority-Flood: An Optimal Depression-Filling and Watershed-Labeling Algorithm f
 RichDEM https://github.com/r-barnes/richdem https://richdem.com/
 
 TraitsUI https://docs.enthought.com/traitsui/
+
+Python科学计算三维可视化 https://www.icourse163.org/course/BIT-1001871001
