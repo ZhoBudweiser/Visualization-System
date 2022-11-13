@@ -364,7 +364,7 @@ $$
 
 **[第二周]** 10月31日-11月06日：
 
-从技术路线和知识路线准备。技术上，快速看完慕课，了解各个开发库的使用方法，上手简单样例，获取数据集；知识上，从学位论文和专业书籍出发，获取相关文献与资料，理清基本概念。
+从技术路线和知识路线准备。技术上，快速看完慕课，了解各个开发库的使用方法，上手简单样例，获取数据集；知识上，从学位论文和专业书籍出发，获取相关文献与资料，理清基本概念与算法。
 
 - [x] 看完慕课：BIT-Python科学计算三维可视化
 - [x] 上手简单样例：展示DEM地形数据，使用tvtk库
@@ -379,21 +379,25 @@ $$
 - [x] GUI布局，响应框架：使用 TraitsUI 设计与开发
 - [ ] 展示拓扑关系，处理后的保存数据
 
-**[其他]**：
+**[第四周]** 11月14日-11月20日 
+
+**[汇总]**：
 
 - [x] 获取数据集
 - [x] 选取合适的算法
-- [ ] 实现算法
+- [ ] 实现算法：直接使用即可，可以比较不同的算法
 - [ ] 扩大数据规模
-- [ ] 数据库设计
-- [ ] 数据库搭建
-- [x] 界面设计
+- [ ] 数据库设计与搭建
+- [x] 界面设计：拓扑展示，图结构
 - [x] 数据展示
-- [ ] 交互设计
+- [ ] 交互设计：左右分屏与交互；三维地形图+二维分割（首先实现）
+- [ ] 线框图、纹理（地形样式）图、颜色渲染样式
 
 ## Reference：参考文献与资料
 
 Priority-Flood: An Optimal Depression-Filling and Watershed-Labeling Algorithm for Digital Elevation Models https://github.com/r-barnes/Barnes2013-Depressions
+
+SRTM数据集 http://www.viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm
 
 RichDEM https://github.com/r-barnes/richdem https://richdem.com/
 

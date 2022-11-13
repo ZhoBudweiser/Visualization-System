@@ -30,12 +30,13 @@ class Layout(HasTraits):
     # 定义监听函数、更新视图绘制
     @on_trait_change('fileDir')
     def load_plot(self):
+        self.scene.mlab.clf()
         # 处理地形数据
-        self.dataHandler.getDataSource('./data/N36W113.hgt.zip', 'N36W113.hgt')
+        self.dataHandler.getDataSource(self.fileDir.split('/')[-1])
         # 渲染地形 hgt 的数据 data
-        self.plot = self.scene.mlab.surf(self.dataHandler.dataSource, colormap='gist_earth', warp_scale=0.2, vmin=1200, vmax=1610)  # 可视化平面，指定颜色与放缩的最值
+        self.plot = self.scene.mlab.surf(self.dataHandler.dataSource, colormap='gist_earth', warp_scale=0.2)  # 可视化平面，指定颜色与放缩的最值
         # 创建交互式的可视化窗口
-        self.scene.mlab.view(azimuth=-5.9, elevation=83, distance=570, focalpoint=[5.3, 20, 238])  # 设置照相机的位置
+        # self.scene.mlab.view(azimuth=-5.9, elevation=83, distance=570, focalpoint=[5.3, 20, 238])  # 设置照相机的位置
     # 当场景被激活更新图形
     # @on_trait_change('scene.activated')
     # def update_plot(self):
