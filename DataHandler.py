@@ -21,7 +21,6 @@ class DataHandler:
         # data = np.fromstring(hgt, '>i2')  # 从str中读取数组，格式为 2 字节，大端
         self.dataSource = self.dataPreProcess(hgt)
 
-    @staticmethod
     def dataPreProcess(self, data):
         data.shape = (self.SAMPLES_SIZE, self.SAMPLES_SIZE)  # 调整大小为 3601 * 3601 = 12967201 的二维格式
         data = data.astype(np.float32)  # 将数据类型转换为 float 32 位

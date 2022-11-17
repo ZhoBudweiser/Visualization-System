@@ -14,7 +14,7 @@ class Layout(HasTraits):
     processBtn = Button(u'分割地形')
     showBtn = Button(u'展示拓扑')
     fileDir = File()
-    topo = File()
+    # topo = File()
     stateText = Str()
     menu = MenuBar()
     filePath = ''
@@ -53,36 +53,36 @@ class Layout(HasTraits):
     #         pass
 
     # 定义视图的布局
-    _diagram = Group(
+    _diagram = HSplit(
+        VSplit(
+            Item('stateText', style="custom", height=375, width=375, show_label=False),
+            Item('stateText', style="custom", height=375, width=375, show_label=False)
+        ),
         Item('scene', editor=SceneEditor(scene_class=MayaviScene), height=750, width=900, show_label=False)
     )
-    _bar = Group(
-        Item('menu', style="simple", height=25, width=1000, show_label=False)
+    _bar = HSplit(
+        Item('fileDir', style="simple", height=10, width=375, show_label=False),
+        Item('menu', style="simple", height=10, width=900, show_label=False)
     )
     _buttons = VGrid(
         Item('processBtn', show_label=False),
         Item('showBtn', show_label=False),
         columns=8
     )
-    _directory = Group(
-        Item('fileDir', style="simple", height=10, width=250, show_label=False),
-        Item('topo', style="custom", height=740, width=250, show_label=False)
-    )
+    # _directory = Group(
+    #     # Item('fileDir', style="simple", height=10, width=250, show_label=False),
+    #     Item('topo', style="custom", height=740, width=250, show_label=False)
+    # )
     _states = Group(
-        Item('stateText', style="custom", height=200, width=750, show_label=False)
+        Item('stateText', style="custom", height=200, width=1275, show_label=False)
     )
 
     view = View(
-        VGroup(
+        VSplit(
             _bar,
-            HSplit(
-                _directory,
-                VSplit(
-                    _diagram,
-                    _states,
-                    _buttons
-                )
-            ),
+            _diagram,
+            _states,
+            _buttons
         ),
         title='地形分割与拓扑关系构建可视化系统',
         resizable=True
