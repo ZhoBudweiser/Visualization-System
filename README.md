@@ -407,3 +407,11 @@ RichDEM https://github.com/r-barnes/richdem https://richdem.com/
 TraitsUI https://docs.enthought.com/traitsui/
 
 Python科学计算三维可视化 https://www.icourse163.org/course/BIT-1001871001
+
+wxPython中的Matplotlib具有多个面板 https://www.codenong.com/31286082/
+
+在traitsUI中使用的matplotlib控件 https://wizardforcel.gitbooks.io/hyry-studio-scipy/content/26.html
+
+wxPython https://wxpython.org/
+
+Mayavi http://docs.enthought.com/mayavi/mayavi/index.html

@@ -16,10 +16,13 @@ class Layout(HasTraits):
     fileDir = File()
     # topo = File()
     stateText = Str()
-    menu = MenuBar()
-    filePath = ''
+    menu = Instance(Menu)
+    recalc = Action(name="打开", action="do_recalc")
 
     dataHandler = DataHandler()
+
+    def do_recalc(self):
+        pass
 
     def _processBtn_fired(self):
         pass
@@ -85,6 +88,9 @@ class Layout(HasTraits):
             _buttons
         ),
         title='地形分割与拓扑关系构建可视化系统',
+        menubar=MenuBar(
+            Menu(recalc, name='文件'),
+        ),
         resizable=True
     )
 
