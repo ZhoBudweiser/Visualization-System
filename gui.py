@@ -1,10 +1,11 @@
 import os
 from DataHandler import DataHandler
 from mayavi.core.ui.api import MayaviScene, SceneEditor, MlabSceneModel
-from traits.api import HasTraits, Instance, Button, File, Str, on_trait_change
+from traits.api import HasTraits, Instance, Button, File, Str, HTML, on_trait_change
 from traitsui.api import Group, Item, View, VGroup, HSplit, VSplit, VGrid
 from mayavi.core.api import PipelineBase
 from traitsui.menu import Menu, MenuBar, ToolBar, Action, ActionGroup
+from message import Error, Message
 
 
 class Layout(HasTraits):
@@ -16,6 +17,7 @@ class Layout(HasTraits):
     fileDir = File()
     # topo = File()
     stateText = Str()
+    states = HTML()
     menu = Instance(Menu)
     recalc = Action(name="打开", action="do_recalc")
 
@@ -53,26 +55,24 @@ class Layout(HasTraits):
     def _showBtn_fired(self):
         pass
 
-    @on_trait_change('style')
-    def change_style(self):
+    # 定义监听函数、更新视图绘
+    @on_trait_change('fileDir, style')
+    def load_plot(self):
         if not self.fileDir:
             return
         self.scene.mlab.clf()
         # 处理地形数据
-        self.dataHandler.getDataSource(self.fileDir.split('/')[-1])
-        # 渲染地形 hgt 的数据 data
-        self.plot = self.scene.mlab.surf(self.dataHandler.dataSource, colormap=self.style, warp_scale=0.2)  # 可视化平面，指定颜色与放缩的最值
-
-    # 定义监听函数、更新视图绘制
-    @on_trait_change('fileDir')
-    def load_plot(self):
-        self.scene.mlab.clf()
-        # 处理地形数据
-        self.dataHandler.getDataSource(self.fileDir.split('/')[-1])
-        # 渲染地形 hgt 的数据 data
-        self.plot = self.scene.mlab.surf(self.dataHandler.dataSource, colormap=self.style, warp_scale=0.2)  # 可视化平面，指定颜色与放缩的最值
+        try:
+            self.dataHandler.getDataSource(self.fileDir.split('/')[-1])
+            # 渲染地形 hgt 的数据 data
+            self.plot = self.scene.mlab.surf(self.dataHandler.dataSource, colormap=self.style,
+                                             warp_scale=0.2)  # 可视化平面，指定颜色与放缩的最值
+        except:
+            self.states += str(Error("文件格式错误！"))
+            # print(self.states)
         # 创建交互式的可视化窗口
         # self.scene.mlab.view(azimuth=-5.9, elevation=83, distance=570, focalpoint=[5.3, 20, 238])  # 设置照相机的位置
+
     # 当场景被激活更新图形
     # @on_trait_change('scene.activated')
     # def update_plot(self):
@@ -110,7 +110,7 @@ class Layout(HasTraits):
     #     Item('topo', style="custom", height=740, width=250, show_label=False)
     # )
     _states = Group(
-        Item('stateText', style="custom", height=200, width=1275, show_label=False)
+        Item('states', style="readonly", height=200, width=1275, show_label=False)
     )
 
     view = View(
