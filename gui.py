@@ -2,7 +2,7 @@ import os
 from DataHandler import DataHandler
 from mayavi.core.ui.api import MayaviScene, SceneEditor, MlabSceneModel
 from traits.api import HasTraits, Instance, Button, File, Str, HTML, on_trait_change
-from traitsui.api import Group, Item, View, VGroup, HSplit, VSplit, VGrid
+from traitsui.api import Group, Item, View, VGroup, HSplit, VSplit, VGrid, Tabbed
 from mayavi.core.api import PipelineBase
 from traitsui.menu import Menu, MenuBar, ToolBar, Action, ActionGroup
 from message import Error, Message
@@ -20,12 +20,14 @@ class Layout(HasTraits):
     states = HTML()
     menu = Instance(Menu)
     recalc = Action(name="打开", action="do_recalc")
+    process = Action(name="分割地形", action="do_process")
+    show = Action(name="展示拓扑", action="do_show")
 
-    style_gist_earth = Action(name="多彩", action="do_gist_earth")
-    style_blues = Action(name="雪地", action="do_blues")
-    style_summer = Action(name="草地", action="do_summer")
-    style_vega = Action(name="深彩", action="do_vega")
-    style_terrain = Action(name="常规", action="do_terrain")
+    style_gist_earth = Action(name="多彩", action="do_gist_earth", enabled_when="fileDir", checked_when="True")
+    style_blues = Action(name="雪地", action="do_blues", enabled_when="fileDir")
+    style_summer = Action(name="草地", action="do_summer", enabled_when="fileDir")
+    style_vega = Action(name="地图", action="do_vega", enabled_when="fileDir")
+    style_terrain = Action(name="常规", action="do_terrain", enabled_when="fileDir")
 
     style = Str("terrain")
 
@@ -47,6 +49,12 @@ class Layout(HasTraits):
         self.style = 'terrain'
 
     def do_recalc(self):
+        pass
+
+    def do_process(self):
+        pass
+
+    def do_show(self):
         pass
 
     def _processBtn_fired(self):
@@ -91,26 +99,25 @@ class Layout(HasTraits):
     # 定义视图的布局
     _diagram = HSplit(
         VSplit(
-            Item('stateText', style="custom", height=375, width=375, show_label=False),
-            Item('stateText', style="custom", height=375, width=375, show_label=False)
+            Item('stateText', style="custom", width=500, show_label=False),
+            Item('stateText', style="custom", show_label=False),
+            style='simple'
         ),
-        Item('scene', editor=SceneEditor(scene_class=MayaviScene), height=750, width=900, show_label=False)
+        Item('scene', width=900, height=0.6, editor=SceneEditor(scene_class=MayaviScene), show_label=False)
     )
-    _bar = HSplit(
-        Item('fileDir', style="simple", height=10, width=375, show_label=False),
-        Item('menu', style="simple", height=10, width=900, show_label=False)
+    _bar = Group(
+        Item('fileDir', style="simple", height=10, show_label=False)
     )
-    _buttons = VGrid(
-        Item('processBtn', show_label=False),
-        Item('showBtn', show_label=False),
-        columns=8
-    )
+    _buttons = [
+        process,
+        show,
+    ]
     # _directory = Group(
     #     # Item('fileDir', style="simple", height=10, width=250, show_label=False),
     #     Item('topo', style="custom", height=740, width=250, show_label=False)
     # )
     _states = Group(
-        Item('states', style="readonly", height=200, width=1275, show_label=False)
+        Item('states', style="readonly", height=300, show_label=False)
     )
 
     view = View(
@@ -118,13 +125,14 @@ class Layout(HasTraits):
             _bar,
             _diagram,
             _states,
-            _buttons
+            # _buttons
         ),
         title='地形分割与拓扑关系构建可视化系统',
         menubar=MenuBar(
             Menu(recalc, name='文件'),
             Menu(style_gist_earth, style_blues, style_summer, style_vega, style_terrain, name='风格'),
         ),
+        buttons=_buttons,
         resizable=True
     )
 
