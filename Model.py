@@ -15,7 +15,7 @@ import richdem as rd
 
 # 0. 导入预处理的数据
 beau = rd.rdarray(np.load('out.npy'), no_data=-9999)
-beaufig = rd.rdShow(beau, ignore_colours=[0], axes=False, cmap='jet', figsize=(8, 5.5))
+# beaufig = rd.rdShow(beau, ignore_colours=[0], axes=False, cmap='jet', figsize=(8, 5.5))
 
 # 1. 洼地填充
 # # 方式一
@@ -36,6 +36,6 @@ beau_epsilon = rd.FillDepressions(beau, epsilon=True, in_place=False)
 # beaufig_diffeps_diff = rd.rdShow(beau_diffeps_diff, ignore_colours=[0], axes=False, cmap='jet', figsize=(8, 5.5))
 
 # 2. 流向计算
-rd.FillDepressions(beau_epsilon, epsilon=True, in_place=True)
+# rd.FillDepressions(beau_epsilon, epsilon=True, in_place=True)
 accum_d8 = rd.FlowAccumulation(beau_epsilon, method='D8')
-d8_fig = rd.rdShow(accum_d8, zxmin=450, zxmax=550, zymin=550, zymax=450, figsize=(8,5.5), axes=False, cmap='jet')
+d8_fig = rd.rdShow(accum_d8, zxmin=450, zxmax=550, zymin=550, zymax=450, figsize=(8, 5.5), axes=False, cmap='jet')
