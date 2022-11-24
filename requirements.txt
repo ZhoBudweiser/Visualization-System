@@ -13,3 +13,4 @@ VTK==7.1.1
 richdem~=0.3.4
 wxPython~=4.0.0b2
 matplotlib~=3.3.4
+archook~=1.2.0

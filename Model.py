@@ -2,6 +2,33 @@ import zipfile
 import numpy as np
 import richdem as rd
 
+# ------------------------------------------------------------------
+
+# import sys
+# import os
+# sys.path.insert(1, os.environ["HOMEDRIVE"]+os.environ["HOMEPATH"]+'/Documents/GitHub/arcgis-scripts')
+import archook
+archook.get_arcpy(pro=True)
+import arcpy
+# try:
+#     import archook
+#     archook.get_arcpy(pro=True)
+#     import arcpy
+#     # from arcpy import env
+#     # from arcpy.sa import *
+# except ImportError:
+#     # do whatever you do if arcpy isnt there.
+#     print(ImportError)
+
+help(arcpy)
+
+# env.workspace = "C:/sapyexamples/data"
+# outWatershed = Watershed("flowdir", "pourpoint")
+# outWatershed.save("C:/sapyexamples/output/outwtrshd01")
+
+# ---------------------------------------------------------------
+
+
 # # 读取压缩 hgt 文件。北纬36-37度，西经113-114度地形高程数据
 # hgt = zipfile.ZipFile('./data/N36W113.hgt.zip').read('N36W113.hgt')
 # # 处理地形数据

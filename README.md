@@ -382,9 +382,21 @@ $$
 
 **[第四周]** 11月14日-11月20日 
 
-- [ ] 搭建两个视图，同时展示二维和三维的图像
-- [ ] 使两个视图发生联动
-- [ ] 展示拓扑关系，处理后的保存数据
+重新可视化布局，实现左右分屏，使得能够同时展示二维和三维的视图，初步引入消息交互
+
+- [x] 重新布局界面，搭建两个视图
+- [x] 添加菜单
+- [x] 展示二维和三维的图像
+- [x] 引入消息机制
+
+**[第五周] **11月21日-11月27日
+
+调研引入分割算法，加入鼠标交互
+
+- [x] 使两个视图发生联动
+- [ ] 实现分割算法，保存分割后的
+- [x] 展示拓扑关系
+- [ ] 处理后的保存数据
 
 **[汇总]**：
 
@@ -412,7 +424,7 @@ Python科学计算三维可视化 https://www.icourse163.org/course/BIT-10018710
 
 wxPython中的Matplotlib具有多个面板 https://www.codenong.com/31286082/
 
-在traitsUI中使用的matplotlib控件 https://wizardforcel.gitbooks.io/hyry-studio-scipy/content/26.html
+在traitsUI中使用的matplotlib控件 https://wizardforcel.gitbooks.io/hyry-studio-scipy/content/26.html，https://stackoverflow.com/questions/49371365/combining-multiple-traitsui-views-containing-matplotlib-figures
 
 wxPython https://wxpython.org/
 
